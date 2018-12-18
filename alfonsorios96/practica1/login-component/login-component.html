@@ -1,0 +1,60 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="login-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="login">
+      <h2>Iniciar sesión</h2>
+      <p>¿No tienes cuenta? Da clic <paper-button on-tap="toggle">aquí</paper-button>
+      <paper-input label="Nombre de usuario" value="{{username}}"></paper-input>
+      <paper-input label="Contraseña" type="password" value="{{password}}"></paper-input>
+      <paper-button on-tap="login">Iniciar sesión</paper-button>
+    </div>
+    <div class="signin">
+      <h2>Iniciar sesión</h2>
+      <paper-input label="Nombre de usuario" value="{{username}}"></paper-input>
+      <paper-input label="Contraseña" type="password" value="{{password}}"></paper-input>
+      <paper-button on-tap="login">Iniciar sesión</paper-button>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `login-component`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class LoginComponent extends Polymer.Element {
+      static get is() { return 'login-component'; }
+      static get properties() {
+        return {
+          username: {
+            type: String,
+            value: ''
+          },
+          password: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+      login(){
+        alert('usuario:' + this.username + ' pass: ' + this.password);
+      }
+      toggle() {
+        
+      }
+    }
+
+    window.customElements.define(LoginComponent.is, LoginComponent);
+  </script>
+</dom-module>
