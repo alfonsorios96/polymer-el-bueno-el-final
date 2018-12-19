@@ -1,0 +1,91 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="practica2-element">
+  <template>
+    <style>
+      paper-card {
+        --paper-card-header-image: {
+          width: 400px;
+          height: 200px;
+        }
+      }
+      .off {
+        background: #d2d2d2;
+      }
+      .container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: 400px;
+        height: auto;
+        margin: 10px;
+      }
+    </style>
+    <h2>Hay [[size]] usuarios conectados.</h2>
+    <div class="container">
+      <dom-repeat items="[[users]]" as="user">
+        <template>
+          <paper-card image="[[user.image]]" class$="card [[user.status]]">
+            <div class="card-content">
+              <div class="cafe-header">Nombre: [[user.firstName]] [[user.lastName]]
+              </div>
+              <p class="cafe-light">
+                Edad: [[user.age]]
+              </p>
+            </div>
+            <div class="card-actions">
+              <div class="horizontal justified">
+                <paper-button on-tap="show">Mostrar</paper-button>
+              </div>
+            </div>
+          </paper-card>
+        </template>
+      </dom-repeat>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `practica2-element`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class Practica2Element extends Polymer.Element {
+      static get is() { return 'practica2-element'; }
+      static get properties() {
+        return {
+          users: {
+            type: Array,
+            value: []
+          },
+          size: {
+            type: Number,
+            computed: '_getUsersListSize(users)'
+          }
+        };
+      }
+      _getUsersListSize(users){
+        return users.filter(user => user.status === 'on').length;
+      }
+      show(event) {
+        this.dispatchEvent(new CustomEvent('user-selected', {
+          bubbles: false,
+          composed: false,
+          detail: event.model.user
+        }));
+      }
+    }
+
+    window.customElements.define(Practica2Element.is, Practica2Element);
+  </script>
+</dom-module>

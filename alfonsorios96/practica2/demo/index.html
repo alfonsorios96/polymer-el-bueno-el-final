@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>practica2-element demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-toast/paper-toast.html">
+    <link rel="import" href="../practica2-element.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic practica2-element demo</h3>
+      <demo-snippet>
+        <template>
+          <practica2-element></practica2-element>
+          <paper-toast id="toast"></paper-toast>
+        </template>
+        <script>
+          const element = document.querySelector('practica2-element');
+          element.users = [
+            {
+              firstName: 'Harry James',
+              lastName: 'Potter',
+              age: 19,
+              image: 'https://images.pottermore.com/bxd3o8b291gf/3SQ3X2km8wkQIsQWa02yOY/25f258f21bdbe5f552a4419bb775f4f0/HarryPotter_WB_F4_HarryPotterMidshot_Promo_080615_Port.jpg?w=1200',
+              status: 'on'
+            },
+            {
+              firstName: 'Lord',
+              lastName: 'Voldemort',
+              age: 191,
+              image: 'https://www.gannett-cdn.com/-mm-/51113c05e531144c5354e297104650e83bea2942/c=632-0-2240-1206/local/-/media/2017/02/09/USATODAY/usatsports/vol4.jpg?width=534&height=401&fit=crop',
+              status: 'off'
+            }
+          ];
+          element.addEventListener('user-selected', event => {
+            const user = event.detail;
+            const toast = document.querySelector('#toast');
+            toast.text = JSON.stringify({
+              event: event.type,
+              data: user
+            });
+            toast.show();
+          });
+        </script>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

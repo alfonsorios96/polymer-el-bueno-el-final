@@ -1,0 +1,18 @@
+{
+  "name": "practica2-element",
+  "main": "practica2-element.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-card": "PolymerElements/paper-card#2.1.0",
+    "paper-button": "PolymerElements/paper-button#2.1.3"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "paper-toast": "PolymerElements/paper-toast#2.1.2"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}
